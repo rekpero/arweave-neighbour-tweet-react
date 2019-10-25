@@ -1,26 +1,20 @@
 import React from "react";
-import "./App.css";
 import Header from "./components/headercomponent";
+import "./App.css";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      wallet: null
-    };
-  }
-  setWallet = wallet => {
-    this.setState({ wallet });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <Header setWallet={this.setWallet} wallet={this.state.wallet} />
-        {this.props.children}
-      </div>
-    );
-  }
-}
+const App = props => {
+  return (
+    <div className="App">
+      <Header
+        setWallet={props.setWallet}
+        wallet={props.wallet}
+        walletAddress={props.walletAddress}
+        walletAmount={props.walletAmount}
+        logout={props.logout}
+      />
+      {props.children}
+    </div>
+  );
+};
 
 export default App;

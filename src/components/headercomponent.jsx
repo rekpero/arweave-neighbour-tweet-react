@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import arweave from "../services/arweave";
+import avatar from "../assets/images/avatar.svg";
+import ApiService from "../services/api";
 
 const Header = props => {
   let closeBtn;
@@ -19,12 +20,11 @@ const Header = props => {
   // set pk json to state
   let handleFileRead = async e => {
     const jwk = JSON.parse(e.target.result);
-    props.setWallet(jwk);
-    let address = await arweave.wallets.jwkToAddress(jwk);
-    sessionStorage.setItem("wallet", e.target.result);
-    console.log(address);
-  };
 
+    let address = await ApiService.getWalletAddress(jwk);
+    props.setWallet(jwk, address);
+  };
+  console.log(parseFloat(ApiService.convertToAr(props.walletAmount)));
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -45,18 +45,70 @@ const Header = props => {
           </button>
           <div id="navbarNavDropdown" className="navbar-collapse collapse">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
+              {props.wallet !== null ? (
+                <li className="nav-item d-flex mx-3 dropdown">
+                  <div
+                    className="nav-link dropdown-toggle align-self-center"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <img
+                      src={avatar}
+                      alt="avatar"
+                      style={{ height: 32, width: 32 }}
+                      className=" rounded border border-primary"
+                    />
+                  </div>
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <div
+                      className="dropdown-item text-center"
+                      style={{ margin: 0 }}
+                    >
+                      <a
+                        className="d-flex align-items-end justify-content-center"
+                        href={
+                          "https://viewblock.io/arweave/address/" +
+                          props.walletAddress
+                        }
+                        style={{ textDecoration: "none" }}
+                      >
+                        <span style={{ fontSize: 28, fontWeight: 600 }}>
+                          {parseFloat(
+                            ApiService.convertToAr(props.walletAmount)
+                          ).toFixed(2)}{" "}
+                          AR
+                        </span>
+                      </a>
+                      <div className="badge badge-primary text-left">
+                        {props.walletAddress.substring(0, 8)}...
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ) : null}
+
+              <li className="nav-item d-flex">
                 {props.wallet === null ? (
                   <button
                     type="button"
-                    className="btn btn-primary"
+                    className="btn btn-primary align-self-center"
                     data-toggle="modal"
                     data-target="#loginModal"
                   >
                     <strong>LOG IN</strong>
                   </button>
                 ) : (
-                  <button type="button" className="btn btn-primary">
+                  <button
+                    type="button"
+                    className="btn btn-primary align-self-center"
+                    onClick={e => props.logout()}
+                  >
                     <strong>LOG OUT</strong>
                   </button>
                 )}
