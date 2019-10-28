@@ -4,6 +4,7 @@ import App from "../App";
 import HomePage from "../pages/homepage";
 import ApiService from "../services/api";
 import NeighbourPage from "../pages/neighbourpage";
+import AccountPage from "../pages/accountpage";
 
 class AppRouter extends React.Component {
   constructor(props) {
@@ -60,12 +61,22 @@ class AppRouter extends React.Component {
           />
           <Route
             exact
-            path="/:id"
+            path="/neighbour/:id"
             render={props => (
               <NeighbourPage
                 wallet={this.state.wallet}
                 walletAddress={this.state.walletAddress}
                 {...props}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/account"
+            render={() => (
+              <AccountPage
+                wallet={this.state.wallet}
+                walletAddress={this.state.walletAddress}
               />
             )}
           />

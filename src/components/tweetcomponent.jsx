@@ -32,7 +32,11 @@ const Tweet = props => {
           <div className="d-flex align-items-center">
             <div className="mr-1 pl-2">
               <Link
-                to={"/" + props.ownerAddress}
+                to={
+                  props.walletAddress === props.ownerAddress
+                    ? "account"
+                    : "/neighbour/" + props.ownerAddress
+                }
                 style={{ textDecoration: "none" }}
               >
                 <strong>{props.ownerAddress.substring(0, 16)}</strong>

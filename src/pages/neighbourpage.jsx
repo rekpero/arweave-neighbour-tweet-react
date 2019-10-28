@@ -11,6 +11,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ShowCommentModal from "../components/showcommentmodalcomponent";
 import ShowLikeModal from "../components/showlikemodalcomponent";
+import SendGiftCardModal from "../components/sendgiftcardmodalcomponent";
 
 export default class NeighbourPage extends React.Component {
   showComment = null;
@@ -121,7 +122,6 @@ export default class NeighbourPage extends React.Component {
         <ShowCommentModal comments={this.state.showComments} />
         <button
           type="button"
-          className="btn btn-primary align-self-center"
           style={{ display: "none" }}
           data-toggle="modal"
           data-target="#showCommentModal"
@@ -130,12 +130,15 @@ export default class NeighbourPage extends React.Component {
         <ShowLikeModal likes={this.state.showLikes} />
         <button
           type="button"
-          className="btn btn-primary align-self-center"
           style={{ display: "none" }}
           data-toggle="modal"
           data-target="#showLikeModal"
           ref={btn => (this.showLike = btn)}
         ></button>
+        <SendGiftCardModal
+          sendAddress={this.props.match.params.id}
+          wallet={this.props.wallet}
+        />
         <div className="row">
           <div className="col-md-3"></div>
           <div className="col-md-6">
@@ -158,6 +161,8 @@ export default class NeighbourPage extends React.Component {
                     disabled={
                       this.props.match.params.id === this.props.walletAddress
                     }
+                    data-toggle="modal"
+                    data-target="#sendGiftCardModal"
                   >
                     <strong>Send Gift Card</strong>
                   </button>

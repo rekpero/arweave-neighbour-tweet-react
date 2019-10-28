@@ -44,6 +44,18 @@ const Header = props => {
             <span className="navbar-toggler-icon" />
           </button>
           <div id="navbarNavDropdown" className="navbar-collapse collapse">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">
+                  <strong>Home</strong>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/account">
+                  <strong>Account</strong>
+                </Link>
+              </li>
+            </ul>
             <ul className="navbar-nav ml-auto">
               {props.wallet !== null ? (
                 <li className="nav-item d-flex mx-3 dropdown">
