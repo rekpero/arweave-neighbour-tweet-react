@@ -2,7 +2,7 @@
 
 <img src="https://github.com/mmitrasish/arweave-neighbour-tweet-react/blob/master/public/logo.svg" width="100" height="100">
 
-**Ar Neighbour** is an [Arweave](https://www.arweave.org/) Dapp where you can view tweets of your neighbour and can send gift cards to them. Here once you post tweet, your post will be permanent and you will not be able to delete it later. You can also send gift card with some AR and a note to get your neighbor's attention.
+**Ar Neighbour** is an [Arweave](https://www.arweave.org/) Dapp where you can view tweets of your neighbour and can send gift cards to them. Here once you post tweet, your post will be permanent and you will not be able to delete it later. You can also send gift card with some AR and a note to get your neighbour's attention.
 
 ## Ar Neighbour Link
 
