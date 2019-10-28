@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import App from "../App";
 import HomePage from "../pages/homepage";
 import ApiService from "../services/api";
+import NeighbourPage from "../pages/neighbourpage";
 
 class AppRouter extends React.Component {
   constructor(props) {
@@ -50,7 +51,23 @@ class AppRouter extends React.Component {
           <Route
             exact
             path="/"
-            render={() => <HomePage wallet={this.state.wallet} />}
+            render={() => (
+              <HomePage
+                wallet={this.state.wallet}
+                walletAddress={this.state.walletAddress}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/:id"
+            render={props => (
+              <NeighbourPage
+                wallet={this.state.wallet}
+                walletAddress={this.state.walletAddress}
+                {...props}
+              />
+            )}
           />
         </App>
       </Router>
