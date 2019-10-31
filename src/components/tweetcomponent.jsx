@@ -57,6 +57,9 @@ const Tweet = props => {
                 backgroundSize: "cover",
                 height: 200
               }}
+              onClick={e => {
+                props.setModalImage(props.imageUrl);
+              }}
             ></div>
           ) : null}
 

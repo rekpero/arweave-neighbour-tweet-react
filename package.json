@@ -5,10 +5,8 @@
   "dependencies": {
     "arweave": "^1.4.1",
     "autosize": "^4.0.2",
-    "bootstrap": "^4.3.1",
     "javascript-time-ago": "^2.0.3",
     "jquery": "^3.4.1",
-    "popper.js": "^1.16.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-router-dom": "^5.1.2",

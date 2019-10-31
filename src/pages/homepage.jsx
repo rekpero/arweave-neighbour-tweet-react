@@ -14,12 +14,14 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import ShowCommentModal from "../components/showcommentmodalcomponent";
 import ShowLikeModal from "../components/showlikemodalcomponent";
+import ShowImageModal from "../components/showimagemodalcomponent";
 
 export default class HomePage extends React.Component {
   textarea = null;
   inputImage = null;
   showComment = null;
   showLike = null;
+  showImage = null;
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +36,8 @@ export default class HomePage extends React.Component {
       toastTitle: "",
       toastMessage: "",
       showComments: [],
-      showLikes: []
+      showLikes: [],
+      showImageModal: ""
     };
   }
 
@@ -44,7 +47,10 @@ export default class HomePage extends React.Component {
 
     this.logTweet = setInterval(async () => {
       const allTweets = await ApiService.getAllTweets();
-      if (JSON.stringify(allTweets) !== JSON.stringify(this.state.allTweets)) {
+      if (
+        JSON.stringify(allTweets) !== JSON.stringify(this.state.allTweets) ||
+        allTweets.length === 0
+      ) {
         this.setState(
           {
             allTweets,
@@ -67,7 +73,7 @@ export default class HomePage extends React.Component {
           }
         );
       }
-    }, 10000);
+    }, 6000);
 
     TimeAgo.addLocale(en);
     this.timeAgo = new TimeAgo("en-US");
@@ -89,6 +95,12 @@ export default class HomePage extends React.Component {
   componentDidUpdate() {
     autosize(this.textarea);
   }
+
+  setModalImage = imageUrl => {
+    this.setState({ showImageModal: imageUrl }, () => {
+      this.showImage.click();
+    });
+  };
 
   handleImageUpload = () => {
     this.inputImage.click();
@@ -211,12 +223,6 @@ export default class HomePage extends React.Component {
     navigator.geolocation.clearWatch(this.watchLocation);
   }
   render() {
-    console.log(
-      this.state.filteredTweets
-        .filter(tweet => tweet.owner !== this.props.walletAddress)
-        .map(tweet => tweet.owner)
-        .filter((tweet, index, arr) => arr.indexOf(tweet) === index)
-    );
     return (
       <div className="container">
         <Toast
@@ -240,6 +246,15 @@ export default class HomePage extends React.Component {
           data-toggle="modal"
           data-target="#showLikeModal"
           ref={btn => (this.showLike = btn)}
+        ></button>
+        <ShowImageModal imageUrl={this.state.showImageModal} />
+        <button
+          type="button"
+          className="btn btn-primary align-self-center"
+          style={{ display: "none" }}
+          data-toggle="modal"
+          data-target="#showImageModal"
+          ref={btn => (this.showImage = btn)}
         ></button>
         <div className="row">
           <div className="col-md-3">
@@ -360,31 +375,34 @@ export default class HomePage extends React.Component {
                 ) : null}
               </div>
               <hr className="my-2" />
-              {this.state.filteredTweets.map((tweets, index) => (
-                <Tweet
-                  key={index}
-                  ownerAddress={tweets.owner}
-                  timeAgo={this.timeAgo.format(tweets.time, "twitter")}
-                  tweet={tweets.tweet}
-                  imageUrl={tweets.imageFile}
-                  commentNumber={tweets.comments.length}
-                  likeNumber={tweets.likes.length}
-                  isLiked={
-                    tweets.likes.length === 0
-                      ? false
-                      : tweets.likes.filter(
-                          like => like.owner === this.props.walletAddress
-                        ).length === 1
-                  }
-                  tweets={tweets}
-                  likeTweet={this.likeTweet}
-                  wallet={this.props.wallet}
-                  walletAddress={this.props.walletAddress}
-                  tweetCommented={this.tweetCommented}
-                  showComments={this.showComments}
-                  showLikes={this.showLikes}
-                />
-              ))}
+              {this.state.filteredTweets.length === 0
+                ? "No Tweets Found"
+                : this.state.filteredTweets.map((tweets, index) => (
+                    <Tweet
+                      key={index}
+                      ownerAddress={tweets.owner}
+                      timeAgo={this.timeAgo.format(tweets.time, "twitter")}
+                      tweet={tweets.tweet}
+                      imageUrl={tweets.imageFile}
+                      commentNumber={tweets.comments.length}
+                      likeNumber={tweets.likes.length}
+                      isLiked={
+                        tweets.likes.length === 0
+                          ? false
+                          : tweets.likes.filter(
+                              like => like.owner === this.props.walletAddress
+                            ).length === 1
+                      }
+                      tweets={tweets}
+                      likeTweet={this.likeTweet}
+                      wallet={this.props.wallet}
+                      walletAddress={this.props.walletAddress}
+                      tweetCommented={this.tweetCommented}
+                      showComments={this.showComments}
+                      showLikes={this.showLikes}
+                      setModalImage={this.setModalImage}
+                    />
+                  ))}
             </div>
           </div>
           <div className="col-md-3">

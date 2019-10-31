@@ -12,10 +12,12 @@ import en from "javascript-time-ago/locale/en";
 import ShowCommentModal from "../components/showcommentmodalcomponent";
 import ShowLikeModal from "../components/showlikemodalcomponent";
 import SendGiftCardModal from "../components/sendgiftcardmodalcomponent";
+import ShowImageModal from "../components/showimagemodalcomponent";
 
 export default class NeighbourPage extends React.Component {
   showComment = null;
   showLike = null;
+  showImage = null;
   constructor(props) {
     super(props);
     this.state = {
@@ -25,13 +27,13 @@ export default class NeighbourPage extends React.Component {
       toastTitle: "",
       toastMessage: "",
       showComments: [],
-      showLikes: []
+      showLikes: [],
+      showImageModal: ""
     };
   }
 
   componentDidMount() {
     autosize(this.textarea);
-    console.log(this.props.match.params.id);
 
     this.logTweet = setInterval(async () => {
       const allTweets = await ApiService.getAllTweetsByWallet(
@@ -48,7 +50,7 @@ export default class NeighbourPage extends React.Component {
           }
         );
       }
-    }, 10000);
+    }, 6000);
 
     TimeAgo.addLocale(en);
     this.timeAgo = new TimeAgo("en-US");
@@ -70,6 +72,12 @@ export default class NeighbourPage extends React.Component {
   componentDidUpdate() {
     autosize(this.textarea);
   }
+
+  setModalImage = imageUrl => {
+    this.setState({ showImageModal: imageUrl }, () => {
+      this.showImage.click();
+    });
+  };
 
   showComments = tweet => {
     this.setState({ showComments: tweet.comments }, () => {
@@ -139,6 +147,15 @@ export default class NeighbourPage extends React.Component {
           sendAddress={this.props.match.params.id}
           wallet={this.props.wallet}
         />
+        <ShowImageModal imageUrl={this.state.showImageModal} />
+        <button
+          type="button"
+          className="btn btn-primary align-self-center"
+          style={{ display: "none" }}
+          data-toggle="modal"
+          data-target="#showImageModal"
+          ref={btn => (this.showImage = btn)}
+        ></button>
         <div className="row">
           <div className="col-md-3"></div>
           <div className="col-md-6">
@@ -233,6 +250,7 @@ export default class NeighbourPage extends React.Component {
                   tweetCommented={this.tweetCommented}
                   showComments={this.showComments}
                   showLikes={this.showLikes}
+                  setModalImage={this.setModalImage}
                 />
               ))}
             </div>

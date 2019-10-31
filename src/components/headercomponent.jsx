@@ -51,9 +51,11 @@ const Header = props => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/account">
-                  <strong>Account</strong>
-                </Link>
+                {props.wallet !== null ? (
+                  <Link className="nav-link" to="/account">
+                    <strong>Account</strong>
+                  </Link>
+                ) : null}
               </li>
             </ul>
             <ul className="navbar-nav ml-auto">

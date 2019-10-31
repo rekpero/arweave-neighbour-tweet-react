@@ -73,12 +73,16 @@ class AppRouter extends React.Component {
           <Route
             exact
             path="/account"
-            render={() => (
-              <AccountPage
-                wallet={this.state.wallet}
-                walletAddress={this.state.walletAddress}
-              />
-            )}
+            render={() =>
+              this.state.wallet !== null ? (
+                <AccountPage
+                  wallet={this.state.wallet}
+                  walletAddress={this.state.walletAddress}
+                />
+              ) : (
+                <Redirect to="/" />
+              )
+            }
           />
         </App>
       </Router>
