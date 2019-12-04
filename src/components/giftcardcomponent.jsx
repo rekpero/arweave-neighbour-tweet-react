@@ -1,10 +1,25 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import postAvatar from "../assets/images/postAvatar.svg";
 import circle from "../assets/images/circle.svg";
 import arweaveIcon from "../assets/images/arweaveIcon.png";
 
 const GiftCard = props => {
+  const openTweetFrom = () => {
+    if (props.walletAddress === props.fromAddress) {
+      props.setTab(1);
+    } else {
+      props.setId(props.fromAddress);
+      props.setTab(2);
+    }
+  };
+  const openTweetTo = () => {
+    if (props.walletAddress === props.toAddress) {
+      props.setTab(1);
+    } else {
+      props.setId(props.toAddress);
+      props.setTab(2);
+    }
+  };
   return (
     <div>
       <div className="row">
@@ -18,19 +33,12 @@ const GiftCard = props => {
         <div className="col-md-11">
           <div className="d-flex align-items-center">
             <div className="mr-1 pl-2">
-              <Link
-                to={
-                  props.walletAddress === props.fromAddress
-                    ? "account"
-                    : "/neighbour/" + props.fromAddress
-                }
-                style={{ textDecoration: "none" }}
-              >
+              <a onClick={openTweetFrom} style={{ textDecoration: "none" }}>
                 <strong>
                   {props.fromAddress.substring(0, 12)}...
                   {props.fromAddress.substring(-4, 4)}
                 </strong>
-              </Link>
+              </a>
             </div>
             <div className="mr-1">
               <img src={circle} alt="circle" style={{ width: 4, height: 4 }} />
@@ -59,18 +67,14 @@ const GiftCard = props => {
                 <div className="text-center mt-2">
                   <strong>to: </strong>
                   <span className="badge badge-primary">
-                    <Link
-                      to={
-                        props.walletAddress === props.toAddress
-                          ? "account"
-                          : "/neighbour/" + props.toAddress
-                      }
+                    <a
+                      onClick={openTweetTo}
                       style={{ textDecoration: "none" }}
                       className="text-white"
                     >
                       {props.toAddress.substring(0, 12)}...
                       {props.toAddress.substring(-4, 4)}
-                    </Link>
+                    </a>
                   </span>
                 </div>
                 <div className="text-secondary text-center my-2 overflow-auto">

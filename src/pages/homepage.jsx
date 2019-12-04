@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import photo from "../assets/images/photo.svg";
 import postAvatar from "../assets/images/postAvatar.svg";
 import remove from "../assets/images/remove.svg";
@@ -218,6 +217,11 @@ export default class HomePage extends React.Component {
     return d;
   };
 
+  openTweet = id => {
+    this.props.setId(id);
+    this.props.setTab(2);
+  };
+
   componentWillUnmount() {
     clearInterval(this.logTweet);
     navigator.geolocation.clearWatch(this.watchLocation);
@@ -401,6 +405,8 @@ export default class HomePage extends React.Component {
                       showComments={this.showComments}
                       showLikes={this.showLikes}
                       setModalImage={this.setModalImage}
+                      setTab={this.props.setTab}
+                      setId={this.props.setId}
                     />
                   ))}
             </div>
@@ -418,12 +424,12 @@ export default class HomePage extends React.Component {
                     .filter((tweet, index, arr) => arr.indexOf(tweet) === index)
                     .map(owner => (
                       <li className="list-group-item" key={owner}>
-                        <Link
-                          to={"/" + owner}
+                        <a
+                          onClick={e => this.openTweet(owner)}
                           style={{ textDecoration: "none" }}
                         >
                           {owner.substring(0, 12)}
-                        </Link>
+                        </a>
                       </li>
                     ))}
                 </ul>

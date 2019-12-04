@@ -370,6 +370,8 @@ export default class AccountPage extends React.Component {
                         showComments={this.showComments}
                         showLikes={this.showLikes}
                         setModalImage={this.setModalImage}
+                        setTab={this.props.setTab}
+                        setId={this.props.setId}
                       />
                     ))
                 : this.state.showDiv === "sentGiftCard"

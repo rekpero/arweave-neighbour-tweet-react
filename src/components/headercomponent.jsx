@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import avatar from "../assets/images/avatar.svg";
 import logo from "../assets/images/logo.svg";
 import ApiService from "../services/api";
@@ -30,7 +29,10 @@ const Header = props => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
-          <Link className="navbar-brand d-flex align-items-center" to="/">
+          <a
+            className="navbar-brand d-flex align-items-center"
+            onClick={e => props.setTab(0)}
+          >
             <img
               src={logo}
               alt="logo"
@@ -38,7 +40,7 @@ const Header = props => {
               className="mr-2"
             />
             <strong>Ar Neighbour</strong>
-          </Link>
+          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -52,16 +54,16 @@ const Header = props => {
           </button>
           <div id="navbarNavDropdown" className="navbar-collapse collapse">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to="/">
+              <li className={"nav-item " + (props.tab === 0 ? "active" : null)}>
+                <a className="nav-link" onClick={e => props.setTab(0)}>
                   <strong>Home</strong>
-                </Link>
+                </a>
               </li>
-              <li className="nav-item">
+              <li className={"nav-item " + (props.tab === 1 ? "active" : null)}>
                 {props.wallet !== null ? (
-                  <Link className="nav-link" to="/account">
+                  <a className="nav-link" onClick={e => props.setTab(1)}>
                     <strong>Account</strong>
-                  </Link>
+                  </a>
                 ) : null}
               </li>
             </ul>

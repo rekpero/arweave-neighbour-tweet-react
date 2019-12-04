@@ -11,6 +11,8 @@ const App = props => {
         walletAddress={props.walletAddress}
         walletAmount={props.walletAmount}
         logout={props.logout}
+        setTab={props.setTab}
+        tab={props.tab}
       />
       {props.children}
     </div>

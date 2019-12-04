@@ -36,9 +36,7 @@ export default class NeighbourPage extends React.Component {
     autosize(this.textarea);
 
     this.logTweet = setInterval(async () => {
-      const allTweets = await ApiService.getAllTweetsByWallet(
-        this.props.match.params.id
-      );
+      const allTweets = await ApiService.getAllTweetsByWallet(this.props.id);
       if (JSON.stringify(allTweets) !== JSON.stringify(this.state.allTweets)) {
         this.setState(
           {
@@ -144,7 +142,7 @@ export default class NeighbourPage extends React.Component {
           ref={btn => (this.showLike = btn)}
         ></button>
         <SendGiftCardModal
-          sendAddress={this.props.match.params.id}
+          sendAddress={this.props.id}
           wallet={this.props.wallet}
         />
         <ShowImageModal imageUrl={this.state.showImageModal} />
@@ -170,14 +168,12 @@ export default class NeighbourPage extends React.Component {
                   />
                 </div>
                 <div className="my-2">
-                  <strong>{this.props.match.params.id}</strong>
+                  <strong>{this.props.id}</strong>
                 </div>
                 <div className="my-2">
                   <button
                     className="btn btn-primary"
-                    disabled={
-                      this.props.match.params.id === this.props.walletAddress
-                    }
+                    disabled={this.props.id === this.props.walletAddress}
                     data-toggle="modal"
                     data-target="#sendGiftCardModal"
                   >

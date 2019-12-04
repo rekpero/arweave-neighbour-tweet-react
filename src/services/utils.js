@@ -4,7 +4,7 @@ import {
 
 export const getAppName = () => {
     if (process.env.NODE_ENV === 'development') {
-        return `${APP_NAME}-dev-v3`;
+        return `${APP_NAME}-dev-v2`;
     }
     return APP_NAME;
 };

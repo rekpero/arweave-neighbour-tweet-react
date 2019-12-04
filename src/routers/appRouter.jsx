@@ -1,5 +1,4 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import App from "../App";
 import HomePage from "../pages/homepage";
 import ApiService from "../services/api";
@@ -18,7 +17,9 @@ class AppRouter extends React.Component {
       walletAddress:
         sessionStorage.getItem("walletAddress") === null
           ? ""
-          : sessionStorage.getItem("walletAddress")
+          : sessionStorage.getItem("walletAddress"),
+      tab: 0,
+      id: ""
     };
   }
   async componentDidMount() {
@@ -39,53 +40,52 @@ class AppRouter extends React.Component {
     sessionStorage.removeItem("walletAddress");
     this.setState({ wallet: null, walletAmount: 0, walletAddress: "" });
   };
+
+  setTab = tab => {
+    this.setState({ tab });
+  };
+  setId = id => {
+    this.setState({ id });
+  };
   render() {
     return (
-      <Router>
-        <App
-          wallet={this.state.wallet}
-          walletAddress={this.state.walletAddress}
-          walletAmount={this.state.walletAmount}
-          setWallet={this.setWallet}
-          logout={this.logout}
-        >
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <HomePage
-                wallet={this.state.wallet}
-                walletAddress={this.state.walletAddress}
-              />
-            )}
+      <App
+        wallet={this.state.wallet}
+        walletAddress={this.state.walletAddress}
+        walletAmount={this.state.walletAmount}
+        setWallet={this.setWallet}
+        logout={this.logout}
+        setTab={this.setTab}
+        tab={this.state.tab}
+      >
+        {this.state.tab === 0 ? (
+          <HomePage
+            wallet={this.state.wallet}
+            walletAddress={this.state.walletAddress}
+            setTab={this.setTab}
+            setId={this.setId}
           />
-          <Route
-            exact
-            path="/neighbour/:id"
-            render={props => (
-              <NeighbourPage
-                wallet={this.state.wallet}
-                walletAddress={this.state.walletAddress}
-                {...props}
-              />
-            )}
+        ) : null}
+        {this.state.tab === 1 ? (
+          this.state.wallet !== null ? (
+            <AccountPage
+              wallet={this.state.wallet}
+              walletAddress={this.state.walletAddress}
+              setTab={this.setTab}
+              setId={this.setId}
+            />
+          ) : (
+            this.setTab(0)
+          )
+        ) : null}
+        {this.state.tab === 2 ? (
+          <NeighbourPage
+            wallet={this.state.wallet}
+            walletAddress={this.state.walletAddress}
+            id={this.state.id}
           />
-          <Route
-            exact
-            path="/account"
-            render={() =>
-              this.state.wallet !== null ? (
-                <AccountPage
-                  wallet={this.state.wallet}
-                  walletAddress={this.state.walletAddress}
-                />
-              ) : (
-                <Redirect to="/" />
-              )
-            }
-          />
-        </App>
-      </Router>
+        ) : null}
+      </App>
     );
   }
 }

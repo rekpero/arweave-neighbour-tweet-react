@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import postAvatar from "../assets/images/postAvatar.svg";
 import circle from "../assets/images/circle.svg";
 import comment from "../assets/images/comment.svg";
@@ -11,6 +10,14 @@ const Tweet = props => {
   let likeImage = props.isLiked ? likeRed : likeGrey;
   let likeTweet = () => {
     props.likeTweet(props.tweets);
+  };
+  const openTweet = () => {
+    if (props.walletAddress === props.ownerAddress) {
+      props.setTab(1);
+    } else {
+      props.setId(props.ownerAddress);
+      props.setTab(2);
+    }
   };
   return (
     <div>
@@ -31,16 +38,9 @@ const Tweet = props => {
         <div className="col-md-11">
           <div className="d-flex align-items-center">
             <div className="mr-1 pl-2">
-              <Link
-                to={
-                  props.walletAddress === props.ownerAddress
-                    ? "account"
-                    : "/neighbour/" + props.ownerAddress
-                }
-                style={{ textDecoration: "none" }}
-              >
+              <a onClick={openTweet} style={{ textDecoration: "none" }}>
                 <strong>{props.ownerAddress.substring(0, 16)}</strong>
-              </Link>
+              </a>
             </div>
             <div className="mr-1">
               <img src={circle} alt="circle" style={{ width: 4, height: 4 }} />
