@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import avatar from "../assets/images/avatar.svg";
+import logo from "../assets/images/logo.svg";
 import ApiService from "../services/api";
 
 const Header = props => {
@@ -29,8 +30,14 @@ const Header = props => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
-          <Link className="navbar-brand" to="/">
-            <strong>NEIGHBOUR TWEET</strong>
+          <Link className="navbar-brand d-flex align-items-center" to="/">
+            <img
+              src={logo}
+              alt="logo"
+              style={{ height: 32, width: 32 }}
+              className="mr-2"
+            />
+            <strong>Ar Neighbour</strong>
           </Link>
           <button
             className="navbar-toggler"

@@ -6,8 +6,8 @@
 
 ## Ar Neighbour Link
 
-* **Permaweb**
-* [**Heroku Demo**](https://ar-neighbour-tweet.herokuapp.com/)
+- [**Permaweb**](https://arweave.net/lUDe-YUmsVctq-5KSHEWEHP8UZxnXNvdbB6zs1Lw6ug)
+- [**Heroku Demo**](https://ar-neighbour-tweet.herokuapp.com/)
 
 ## Features
 
@@ -30,5 +30,5 @@
 
 ## Reference
 
-* github repo: https://github.com/ArweaveTeam/arweave-js
-* official docs: https://docs.arweave.org/developers/
+- github repo: https://github.com/ArweaveTeam/arweave-js
+- official docs: https://docs.arweave.org/developers/

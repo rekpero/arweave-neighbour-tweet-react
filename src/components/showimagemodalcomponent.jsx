@@ -1,9 +1,4 @@
 import * as React from "react";
-import TimeAgo from "javascript-time-ago";
-
-// Load locale-specific relative date/time formatting rules.
-import en from "javascript-time-ago/locale/en";
-import Like from "./likecomponent";
 
 const ShowImageModal = props => {
   return (
