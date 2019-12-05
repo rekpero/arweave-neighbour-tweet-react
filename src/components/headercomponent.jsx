@@ -22,7 +22,7 @@ const Header = props => {
     let address = await ApiService.getWalletAddress(jwk);
     props.setWallet(jwk, address);
   };
-  console.log(parseFloat(ApiService.convertToAr(props.walletAmount)));
+  console.log(props.walletAmount);
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">

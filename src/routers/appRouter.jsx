@@ -29,10 +29,11 @@ class AppRouter extends React.Component {
     console.log(walletAmount);
     this.setState({ walletAmount });
   }
-  setWallet = (wallet, walletAddress) => {
+  setWallet = async (wallet, walletAddress) => {
     sessionStorage.setItem("wallet", JSON.stringify(wallet));
     sessionStorage.setItem("walletAddress", walletAddress);
-    this.setState({ wallet, walletAddress });
+    const walletAmount = await ApiService.getWalletAmount(walletAddress);
+    this.setState({ wallet, walletAddress, walletAmount });
   };
 
   logout = () => {
