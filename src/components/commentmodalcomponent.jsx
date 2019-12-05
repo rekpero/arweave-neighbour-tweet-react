@@ -1,7 +1,4 @@
 import React from "react";
-import photo from "../assets/images/photo.svg";
-import postAvatar from "../assets/images/postAvatar.svg";
-import remove from "../assets/images/remove.svg";
 import autosize from "autosize";
 import ApiService from "../services/api";
 
@@ -83,7 +80,7 @@ export default class CommentModal extends React.Component {
               <div className="row">
                 <div className="col-md-1 col-xs-1 col-sm-1">
                   <img
-                    src={postAvatar}
+                    src="https://gdr3yb2vzdz4.arweave.net/bWFwI5a_VMjKHAAgItPgYNbBzj7_MrvVPD6b-n5qnd8/static/media/postAvatar.706965c3.svg"
                     alt="post avatar"
                     className="rounded-circle border border-primary mt-1"
                   />
@@ -111,7 +108,7 @@ export default class CommentModal extends React.Component {
                       }}
                     >
                       <img
-                        src={remove}
+                        src="https://gdr3yb2vzdz4.arweave.net/bWFwI5a_VMjKHAAgItPgYNbBzj7_MrvVPD6b-n5qnd8/static/media/remove.b30c89f6.svg"
                         alt="remove"
                         style={{ height: 28, width: 28 }}
                         onClick={this.removeImage}
@@ -120,7 +117,7 @@ export default class CommentModal extends React.Component {
                   ) : null}
                   <div className="d-flex align-items-center">
                     <img
-                      src={photo}
+                      src="https://gdr3yb2vzdz4.arweave.net/bWFwI5a_VMjKHAAgItPgYNbBzj7_MrvVPD6b-n5qnd8/static/media/photo.69a470b8.svg"
                       alt="add"
                       className="ml-2 mr-4"
                       style={{ height: 22, width: 22 }}

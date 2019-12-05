@@ -1,5 +1,4 @@
 import React from "react";
-import postAvatar from "../assets/images/postAvatar.svg";
 import autosize from "autosize";
 import ApiService from "../services/api";
 import Toast from "../components/toastcomponent";
@@ -255,7 +254,7 @@ export default class AccountPage extends React.Component {
               <div className="my-3">
                 <div>
                   <img
-                    src={postAvatar}
+                    src="https://gdr3yb2vzdz4.arweave.net/bWFwI5a_VMjKHAAgItPgYNbBzj7_MrvVPD6b-n5qnd8/static/media/postAvatar.706965c3.svg"
                     alt="post avatar"
                     className="rounded-circle border border-primary mt-1"
                     style={{ height: 100, width: 100 }}

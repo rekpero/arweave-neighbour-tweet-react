@@ -1,6 +1,4 @@
 import * as React from "react";
-import avatar from "../assets/images/avatar.svg";
-import logo from "../assets/images/logo.svg";
 import ApiService from "../services/api";
 
 const Header = props => {
@@ -34,7 +32,7 @@ const Header = props => {
             onClick={e => props.setTab(0)}
           >
             <img
-              src={logo}
+              src="https://gdr3yb2vzdz4.arweave.net/bWFwI5a_VMjKHAAgItPgYNbBzj7_MrvVPD6b-n5qnd8/static/media/logo.53195486.svg"
               alt="logo"
               style={{ height: 32, width: 32 }}
               className="mr-2"
@@ -79,7 +77,7 @@ const Header = props => {
                     aria-expanded="false"
                   >
                     <img
-                      src={avatar}
+                      src="https://gdr3yb2vzdz4.arweave.net/bWFwI5a_VMjKHAAgItPgYNbBzj7_MrvVPD6b-n5qnd8/static/media/avatar.19016029.svg"
                       alt="avatar"
                       style={{ height: 32, width: 32 }}
                       className=" rounded border border-primary"

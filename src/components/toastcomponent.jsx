@@ -1,5 +1,4 @@
 import * as React from "react";
-import postAvatar from "../assets/images/postAvatar.svg";
 
 const Toast = props => {
   return (
@@ -10,7 +9,7 @@ const Toast = props => {
     >
       <div className="toast-header">
         <img
-          src={postAvatar}
+          src="https://gdr3yb2vzdz4.arweave.net/bWFwI5a_VMjKHAAgItPgYNbBzj7_MrvVPD6b-n5qnd8/static/media/postAvatar.706965c3.svg"
           className="rounded mr-2"
           alt="..."
           style={{ height: 20, width: 20 }}

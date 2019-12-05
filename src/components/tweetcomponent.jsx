@@ -1,13 +1,10 @@
 import * as React from "react";
-import postAvatar from "../assets/images/postAvatar.svg";
-import circle from "../assets/images/circle.svg";
-import comment from "../assets/images/comment.svg";
-import likeRed from "../assets/images/likeRed.svg";
-import likeGrey from "../assets/images/likeGrey.svg";
 import CommentModal from "./commentmodalcomponent";
 
 const Tweet = props => {
-  let likeImage = props.isLiked ? likeRed : likeGrey;
+  let likeImage = props.isLiked
+    ? "likeRed.9d26d8c7.svg"
+    : "likeGrey.fbbc53b2.svg";
   let likeTweet = () => {
     props.likeTweet(props.tweets);
   };
@@ -30,7 +27,7 @@ const Tweet = props => {
         />
         <div className="col-md-1">
           <img
-            src={postAvatar}
+            src="https://gdr3yb2vzdz4.arweave.net/bWFwI5a_VMjKHAAgItPgYNbBzj7_MrvVPD6b-n5qnd8/static/media/postAvatar.706965c3.svg"
             alt="post avatar"
             className="rounded-circle border border-primary mt-1"
           />
@@ -43,7 +40,11 @@ const Tweet = props => {
               </a>
             </div>
             <div className="mr-1">
-              <img src={circle} alt="circle" style={{ width: 4, height: 4 }} />
+              <img
+                src="https://gdr3yb2vzdz4.arweave.net/bWFwI5a_VMjKHAAgItPgYNbBzj7_MrvVPD6b-n5qnd8/static/media/circle.3a760e5c.svg"
+                alt="circle"
+                style={{ width: 4, height: 4 }}
+              />
             </div>
             <div className="text-secondary">{props.timeAgo}</div>
           </div>
@@ -69,7 +70,7 @@ const Tweet = props => {
               style={{ fontSize: 18 }}
             >
               <img
-                src={comment}
+                src="https://gdr3yb2vzdz4.arweave.net/bWFwI5a_VMjKHAAgItPgYNbBzj7_MrvVPD6b-n5qnd8/static/media/comment.b611f7dd.svg"
                 alt="comment"
                 style={{ height: 20, width: 20 }}
                 className="mr-2"
@@ -86,7 +87,10 @@ const Tweet = props => {
               style={{ fontSize: 18 }}
             >
               <img
-                src={likeImage}
+                src={
+                  "https://gdr3yb2vzdz4.arweave.net/bWFwI5a_VMjKHAAgItPgYNbBzj7_MrvVPD6b-n5qnd8/static/media/" +
+                  likeImage
+                }
                 alt="like"
                 style={{ height: 20, width: 20 }}
                 className="mr-2"
