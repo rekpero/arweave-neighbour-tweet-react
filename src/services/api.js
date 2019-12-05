@@ -104,6 +104,7 @@ class ApiService {
         };
 
         const txids = await arweave.arql(query);
+        if (txids.length === 0) return [];
 
         const transactions = await Promise.all(
             txids.map(txid => arweave.transactions.get(txid))
@@ -126,7 +127,6 @@ class ApiService {
             )
         );
 
-        // console.log(stringifiedTransactions);
         return allTransactions;
     }
 
@@ -154,6 +154,7 @@ class ApiService {
         };
 
         const txids = await arweave.arql(query);
+        if (txids.length === 0) return [];
 
         const transactions = await Promise.all(
             txids.map(txid => arweave.transactions.get(txid))
@@ -176,70 +177,8 @@ class ApiService {
             )
         );
 
-        // console.log(stringifiedTransactions);
         return allTransactions;
     }
-
-    // getLikeByTweetIdAndWallet = async (txnId, address) => {
-    //     const query = {
-    //         op: 'and',
-    //         expr1: {
-    //             op: 'and',
-    //             expr1: {
-    //                 op: 'equals',
-    //                 expr1: 'Transaction-Type',
-    //                 expr2: 'like'
-    //             },
-    //             expr2: {
-    //                 op: 'equals',
-    //                 expr1: 'Tweet-Id',
-    //                 expr2: txnId
-    //             }
-    //         },
-    //         expr2: {
-    //             op: 'and',
-    //             expr1: {
-    //                 op: 'equals',
-    //                 expr1: 'App-Name',
-    //                 expr2: getAppName()
-    //             },
-    //             expr2: {
-    //                 op: 'equals',
-    //                 expr1: 'from',
-    //                 expr2: address
-    //             }
-
-    //         }
-    //     };
-
-    //     const txids = await arweave.arql(query);
-
-    //     const transactions = await Promise.all(
-    //         txids.map(txid => arweave.transactions.get(txid))
-    //     );
-
-    //     const allTransactions = await Promise.all(
-    //         transactions.map((transaction, id) => {
-    //                 let transactionNew = JSON.parse(transaction.get('data', {
-    //                     decode: true,
-    //                     string: true
-    //                 }))
-    //                 Object.assign(transactionNew, {
-    //                     owner: transaction.get('owner'),
-    //                     txid: txids[id]
-    //                 })
-
-    //                 return transactionNew
-    //             }
-
-    //         )
-    //     );
-
-    //     // console.log(stringifiedTransactions);
-    //     return allTransactions;
-    // }
-
-
 
     getAllTweets = async () => {
         const query = {
@@ -257,6 +196,7 @@ class ApiService {
         };
 
         const txids = await arweave.arql(query);
+        if (txids.length === 0) return [];
 
         const transactions = await Promise.all(
             txids.map(txid => arweave.transactions.get(txid))
@@ -284,7 +224,6 @@ class ApiService {
             )
         );
 
-        // console.log(stringifiedTransactions);
         return allTransactions;
     }
 
@@ -312,6 +251,7 @@ class ApiService {
         };
 
         const txids = await arweave.arql(query);
+        if (txids.length === 0) return [];
 
         const transactions = await Promise.all(
             txids.map(txid => arweave.transactions.get(txid))
@@ -339,7 +279,6 @@ class ApiService {
             )
         );
 
-        // console.log(stringifiedTransactions);
         return allTransactions;
     }
 
@@ -389,6 +328,7 @@ class ApiService {
         };
 
         const txids = await arweave.arql(query);
+        if (txids.length === 0) return [];
 
         const transactions = await Promise.all(
             txids.map(txid => arweave.transactions.get(txid))
@@ -440,6 +380,7 @@ class ApiService {
         };
 
         const txids = await arweave.arql(query);
+        if (txids.length === 0) return [];
 
         const transactions = await Promise.all(
             txids.map(txid => arweave.transactions.get(txid))
