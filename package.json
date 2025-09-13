@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "arweave": "^1.4.1",
+    "arweave": "^1.15.7",
     "autosize": "^4.0.2",
     "javascript-time-ago": "^2.0.3",
     "jquery": "^3.4.1",
